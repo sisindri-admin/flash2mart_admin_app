@@ -1,0 +1,154 @@
+{
+  "project_info": {
+    "project_number": "905726736218",
+    "project_id": "flash2mart",
+    "storage_bucket": "flash2mart.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905726736218:android:752c762d979781e6a3e563",
+        "android_client_info": {
+          "package_name": "com.example.flash2mart_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdd5geZH9ZKDqiGOZpgaOGt2jJJrM3qzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "905726736218-5kc4ol0lkgq6s8knqoc6ade1b3mhtvsc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flash2mart.frontend"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905726736218:android:a161a5d3b81a6762a3e563",
+        "android_client_info": {
+          "package_name": "com.example.flash2mart_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdd5geZH9ZKDqiGOZpgaOGt2jJJrM3qzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "905726736218-5kc4ol0lkgq6s8knqoc6ade1b3mhtvsc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flash2mart.frontend"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905726736218:android:9e51b582dbf69a3da3e563",
+        "android_client_info": {
+          "package_name": "com.example.frontend_customer_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdd5geZH9ZKDqiGOZpgaOGt2jJJrM3qzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "905726736218-5kc4ol0lkgq6s8knqoc6ade1b3mhtvsc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flash2mart.frontend"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905726736218:android:d078861874bf510ba3e563",
+        "android_client_info": {
+          "package_name": "com.flash2mart.frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdd5geZH9ZKDqiGOZpgaOGt2jJJrM3qzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905726736218-ahvt3psgoshli6fgqha18va55j5jg24n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "905726736218-5kc4ol0lkgq6s8knqoc6ade1b3mhtvsc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flash2mart.frontend"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
