@@ -3,8 +3,9 @@ name: Build Flash2Mart Admin APK
 on:
   push:
     branches:
-      - main
-      - master
+      - '**'
+  workflow_dispatch:
+
 permissions:
   contents: write
 
@@ -17,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -31,23 +32,27 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK
+      - name: Build Release APK
         run: flutter build apk --release
+
+      - name: Rename APK for Mobile Download
+        run: cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/flash2mart-admin-release.apk
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flash2mart-admin-app
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: flash2mart-admin-release-v1.0.${{ github.run_number }}
+          path: build/app/outputs/flutter-apk/flash2mart-admin-release.apk
 
       - name: Publish to GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          files: build/app/outputs/flutter-apk/app-release.apk
-          tag_name: v1.0.0-${{ github.run_number }}
-          name: Release v1.0.0-${{ github.run_number }}
+          files: build/app/outputs/flutter-apk/flash2mart-admin-release.apk
+          tag_name: release-${{ github.ref_name }}-${{ github.run_number }}
+          name: Flash2Mart Admin (${{ github.ref_name }} #${{ github.run_number }})
           body: |
-            Automatic Release for Flash2Mart Admin App.
-            Contains stable app-release.apk.
+            🚀 Automatic Release for Flash2Mart Admin
+            • Branch: `${{ github.ref_name }}`
+            • APK: `flash2mart-admin-release.apk`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
