@@ -21,13 +21,42 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           cache: true
+
+      - name: Configure Gradle Repositories
+        run: |
+          mkdir -p ~/.gradle/init.d
+          cat << 'GRADLE' > ~/.gradle/init.d/repos.gradle
+          beforeSettings { settings ->
+              settings.pluginManagement {
+                  repositories {
+                      mavenCentral()
+                      google()
+                      gradlePluginPortal()
+                  }
+              }
+          }
+          allprojects {
+              buildscript {
+                  repositories {
+                      mavenCentral()
+                      google()
+                      gradlePluginPortal()
+                  }
+              }
+              repositories {
+                  mavenCentral()
+                  google()
+                  gradlePluginPortal()
+              }
+          }
+          GRADLE
 
       - name: Get dependencies
         run: flutter pub get
