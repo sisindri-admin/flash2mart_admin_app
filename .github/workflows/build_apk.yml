@@ -29,7 +29,7 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Configure Gradle Repositories
+      - name: Configure Gradle Plugin Repositories
         run: |
           mkdir -p ~/.gradle/init.d
           cat << 'GRADLE' > ~/.gradle/init.d/repos.gradle
@@ -40,20 +40,6 @@ jobs:
                       google()
                       gradlePluginPortal()
                   }
-              }
-          }
-          allprojects {
-              buildscript {
-                  repositories {
-                      mavenCentral()
-                      google()
-                      gradlePluginPortal()
-                  }
-              }
-              repositories {
-                  mavenCentral()
-                  google()
-                  gradlePluginPortal()
               }
           }
           GRADLE
