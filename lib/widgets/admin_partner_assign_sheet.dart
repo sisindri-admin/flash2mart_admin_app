@@ -208,6 +208,43 @@ class AdminPartnerAssignHelper {
           ? 'Smart Batched with #${partner.batchWithOrderId} → ${partner.name}'
           : (isAutoAssigned ? 'Auto-Assigned nearest partner ${partner.name}' : 'Assigned to ${partner.name} by Admin');
 
+      int newSeq = 1;
+      String? existingBatchDocId;
+      if (partner.activeOrderCount >= 1) {
+        final activeSnap = await FirebaseFirestore.instance
+            .collection('orders')
+            .where('deliveryPartnerId', isEqualTo: partner.partnerId)
+            .get();
+        final targetLoc = OrderLocationSnapshot.fromOrderData(orderData);
+        final distNew = OrderLocationSnapshot.haversineKm(targetLoc.storeLatLng, targetLoc.customerLatLng);
+        for (final ed in activeSnap.docs) {
+          if (ed.id == docId) continue;
+          final eData = ed.data();
+          final es = (eData['orderStatus'] ?? eData['status'] ?? '').toString();
+          if (_isFinishedStatus(es)) continue;
+          existingBatchDocId = ed.id;
+          final eLoc = OrderLocationSnapshot.fromOrderData(eData);
+          final distExisting = OrderLocationSnapshot.haversineKm(eLoc.storeLatLng, eLoc.customerLatLng);
+          if (distNew < distExisting) {
+            newSeq = 1;
+            await ed.reference.update({
+              'isBatchedOrder': true,
+              'batchSequence': 2,
+              'batchedWithOrderId': docId,
+            });
+          } else {
+            newSeq = 2;
+            await ed.reference.update({
+              'isBatchedOrder': true,
+              'batchSequence': 1,
+              'batchedWithOrderId': docId,
+            });
+          }
+          break;
+        }
+      }
+
+      final bool isBatchedNow = partner.isBatchMatch || existingBatchDocId != null;
       final Map<String, dynamic> updatePayload = {
         'deliveryPartnerId': partner.partnerId,
         'deliveryPartnerName': partner.name,
@@ -221,9 +258,10 @@ class AdminPartnerAssignHelper {
         'orderStatus': nextStatus,
         'status': nextStatus,
         'currentStatus': nextStatus,
-        'isBatchedOrder': partner.isBatchMatch,
-        if (partner.batchWithOrderId != null) 'batchedWithOrderId': partner.batchWithOrderId,
-        'batchSequence': partner.isBatchMatch ? 2 : 1,
+        'isBatchedOrder': isBatchedNow,
+        if (partner.batchWithOrderId != null || existingBatchDocId != null)
+          'batchedWithOrderId': partner.batchWithOrderId ?? existingBatchDocId,
+        'batchSequence': newSeq,
         'assignedBy': isAutoAssigned ? 'AdminAutoAssign' : 'Admin',
         'assignedAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
